@@ -107,10 +107,18 @@ class _HomePageState extends State<HomePage> {
                           child: Container(
                             color: Colors.white,
                             padding: EdgeInsets.all(5),
-                            child: Image.asset(
-                              'images/cross.png',
-                              color: Colors.black,
-                              filterQuality: FilterQuality.high,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  crosschecked = true;
+                                  circlechecked = false;
+                                });
+                              },
+                              child: Image.asset(
+                                'images/cross.png',
+                                color: Colors.black,
+                                filterQuality: FilterQuality.high,
+                              ),
                             ),
                           ),
                           height: 50,
@@ -123,9 +131,17 @@ class _HomePageState extends State<HomePage> {
                           child: Container(
                             color: Colors.white,
                             padding: EdgeInsets.all(5),
-                            child: Image.asset(
-                              'images/black_circle.png',
-                              filterQuality: FilterQuality.high,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  crosschecked = false;
+                                  circlechecked = true;
+                                });
+                              },
+                              child: Image.asset(
+                                'images/black_circle.png',
+                                filterQuality: FilterQuality.high,
+                              ),
                             ),
                           ),
                           height: 50,
