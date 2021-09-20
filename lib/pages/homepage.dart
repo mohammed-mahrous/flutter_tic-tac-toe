@@ -29,73 +29,73 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Center(
         child: Container(
-          height: 350,
-          width: 350,
+          height: 260,
+          width: 260,
           padding: EdgeInsets.all(20),
           color: Colors.blue[500],
           child: Center(
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Text('defficulty:'),
-                    SizedBox(
-                      width: 50,
-                    ),
-                    Text('mode:'),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     Text('defficulty:'),
+                //     SizedBox(
+                //       width: 50,
+                //     ),
+                //     Text('mode:'),
+                //   ],
+                // ),
                 SizedBox(
                   height: 5,
                 ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 80,
-                      child: DropdownButton(
-                        icon: Icon(Icons.arrow_downward_sharp),
-                        value: difficulty,
-                        onChanged: (String? newvalue) {
-                          setState(() {
-                            difficulty = newvalue!;
-                          });
-                        },
-                        items: ['easy', 'normal', 'hard']
-                            .map((d) => DropdownMenuItem(
-                                  child: Text(d),
-                                  value: d,
-                                ))
-                            .toList(),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 50,
-                    ),
-                    SizedBox(
-                      width: 120,
-                      child: DropdownButton(
-                        icon: Icon(Icons.arrow_downward_sharp),
-                        value: mode,
-                        onChanged: (String? newvalue) {
-                          setState(() {
-                            mode = newvalue!;
-                          });
-                        },
-                        items: ['single player', 'two players']
-                            .map((d) => DropdownMenuItem(
-                                  child: Text(d),
-                                  value: d,
-                                ))
-                            .toList(),
-                      ),
-                    )
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     SizedBox(
+                //       width: 80,
+                //       child: DropdownButton(
+                //         icon: Icon(Icons.arrow_downward_sharp),
+                //         value: difficulty,
+                //         onChanged: (String? newvalue) {
+                //           setState(() {
+                //             difficulty = newvalue!;
+                //           });
+                //         },
+                //         items: ['easy', 'normal', 'hard']
+                //             .map((d) => DropdownMenuItem(
+                //                   child: Text(d),
+                //                   value: d,
+                //                 ))
+                //             .toList(),
+                //       ),
+                //     ),
+                //     SizedBox(
+                //       width: 50,
+                //     ),
+                //     SizedBox(
+                //       width: 120,
+                //       child: DropdownButton(
+                //         icon: Icon(Icons.arrow_downward_sharp),
+                //         value: mode,
+                //         onChanged: (String? newvalue) {
+                //           setState(() {
+                //             mode = newvalue!;
+                //           });
+                //         },
+                //         items: ['single player', 'two players']
+                //             .map((d) => DropdownMenuItem(
+                //                   child: Text(d),
+                //                   value: d,
+                //                 ))
+                //             .toList(),
+                //       ),
+                //     )
+                //   ],
+                // ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Center(
-                      child: Text('choose player1 type:'),
+                      child: Text('choose player type:'),
                     ),
                     SizedBox(
                       height: 20,
@@ -180,9 +180,6 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ])
                   ],
-                ),
-                SizedBox(
-                  height: 50,
                 ),
                 Container(
                     padding: EdgeInsets.all(5),

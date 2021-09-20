@@ -80,6 +80,51 @@ class _StartGameState extends State<StartGame> {
     return false;
   }
 
+  bool draw() {
+    bool drawSituations = (playerclicked[2] &&
+            playerclicked[3] &&
+            playerclicked[4] &&
+            playerclicked[7] &&
+            playerclicked[8] &&
+            aiclicked[0] &&
+            aiclicked[1] &&
+            aiclicked[5] &&
+            aiclicked[6]) ||
+        (aiclicked[2] &&
+                aiclicked[3] &&
+                aiclicked[4] &&
+                aiclicked[7] &&
+                aiclicked[8]) &&
+            (playerclicked[0] &&
+                playerclicked[1] &&
+                playerclicked[5] &&
+                playerclicked[6]) ||
+        (playerclicked[0] &&
+            playerclicked[1] &&
+            playerclicked[4] &&
+            playerclicked[5] &&
+            playerclicked[6] &&
+            aiclicked[2] &&
+            aiclicked[3] &&
+            aiclicked[7] &&
+            aiclicked[8]) ||
+        (aiclicked[0] &&
+            aiclicked[1] &&
+            aiclicked[4] &&
+            aiclicked[5] &&
+            aiclicked[6] &&
+            playerclicked[2] &&
+            playerclicked[3] &&
+            playerclicked[7] &&
+            playerclicked[8]);
+
+    if (drawSituations) {
+      return true;
+    }
+
+    return false;
+  }
+
   void ai(int index) {
     setState(() {
       switch (index) {
@@ -243,48 +288,61 @@ class _StartGameState extends State<StartGame> {
           playerwiningcount++;
           showDialog(
               context: context,
-              builder: (context) {
-                return AlertDialog(
-                  content: Text('you won'),
-                  actions: [
-                    TextButton(
+              builder: (context) => AlertDialog(
+                    content: Text('you won'),
+                    actions: [
+                      TextButton(
                         onPressed: () {
-                          setState(() {
-                            restart();
-                            Navigator.pop(context);
-                          });
+                          restart();
+
+                          Navigator.pop(context);
                         },
-                        child: Text("restart"))
-                  ],
-                );
-              });
+                        child: Text('restart'),
+                      )
+                    ],
+                  ));
         });
       } else {
         setState(() {
           ai(index);
         });
-        if (aiWon()) {
-          setState(() {
-            aiwiningcount++;
-            showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
+      }
+
+      if (aiWon()) {
+        setState(() {
+          aiwiningcount++;
+          showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
                     content: Text('you lose'),
                     actions: [
                       TextButton(
-                          onPressed: () {
-                            setState(() {
-                              restart();
-                              Navigator.pop(context);
-                            });
-                          },
-                          child: Text("restart"))
+                        onPressed: () {
+                          restart();
+
+                          Navigator.pop(context);
+                        },
+                        child: Text('restart'),
+                      )
                     ],
-                  );
-                });
-          });
-        }
+                  ));
+        });
+      } else if (draw()) {
+        setState(() {
+          showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                    content: Text('draw'),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            restart();
+                            Navigator.pop(context);
+                          },
+                          child: Text('restart'))
+                    ],
+                  ));
+        });
       }
     }
   }
@@ -343,17 +401,17 @@ class _StartGameState extends State<StartGame> {
       body: SafeArea(
         child: Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    'player: ',
+                    'player: $playerwiningcount',
                     style: TextStyle(color: Colors.white),
                   ),
                   Text(
-                    'AI: ',
+                    'AI: $aiwiningcount',
                     style: TextStyle(color: Colors.white),
                   )
                 ],
@@ -390,7 +448,8 @@ class _StartGameState extends State<StartGame> {
                       },
                     ),
                   ),
-                  height: 350,
+                  height: 200,
+                  width: 200,
                   padding: EdgeInsets.all(10),
                   margin: EdgeInsets.all(10),
                   decoration: BoxDecoration(
