@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:tic_tac_toe_app/pages/homepage.dart';
 import 'package:tic_tac_toe_app/pages/play.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {

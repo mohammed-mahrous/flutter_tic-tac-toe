@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                             'difficulty': difficulty,
                             'startFirst': crosschecked
                           };
-                          // debugPrint(data.toString());
+
                           Navigator.of(context)
                               .pushNamed('/play', arguments: data);
                         },
